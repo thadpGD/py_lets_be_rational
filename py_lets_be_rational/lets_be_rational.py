@@ -600,7 +600,7 @@ def implied_volatility_from_a_transformed_rational_guess_with_limited_iterations
     """
     intrinsic = fabs(max(K - F if q < 0 else F - K, 0.0))
     if price < intrinsic:
-        raise BelowIntrinsicException
+        return 0
     max_price = K if q < 0 else F
     if price >= max_price:
         raise AboveMaximumException
