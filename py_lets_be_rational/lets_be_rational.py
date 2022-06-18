@@ -600,10 +600,10 @@ def implied_volatility_from_a_transformed_rational_guess_with_limited_iterations
     """
     intrinsic = fabs(max(K - F if q < 0 else F - K, 0.0))
     if price < intrinsic:
-        return 0
+        return 0 # should revert later
     max_price = K if q < 0 else F
     if price >= max_price:
-        raise AboveMaximumException
+        return 0 # should revert later
     x = log(F / K)
     # Map in-the-money to out-of-the-money
     if q * x > 0:
